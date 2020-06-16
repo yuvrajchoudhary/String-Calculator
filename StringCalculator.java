@@ -4,32 +4,18 @@ package main;
 public class StringCalculator {
 
 	int Add(String numbers) {
-		int sum = 0;
-		
-		if(	numbers.contains(",\n") || numbers.contains("\n,")) {
-			// string is NOT ok
-			return 0;
-		}
-		
-		String[] newLinesSeparatedNumbers = numbers.split("\n");
-		
-		for (String str : newLinesSeparatedNumbers) {
-			if(str.contains(",")) {
-				sum = sum + calulateCommaSeparatedNumbers(str);				
-			}
-			else {
-				sum = sum + calculateNumber(str);
-			}
-			
-		}	
-		
-		return sum;
+		String[] newLinesSeparatedString = numbers.split("\n");
+
+		String delimiter = newLinesSeparatedString[0].substring(2);
+
+		return calulatedelimiterSeparatedNumbers(newLinesSeparatedString[1] , delimiter);
+
 	}
-	
-	private int calulateCommaSeparatedNumbers (String str) {
+
+	private int calulatedelimiterSeparatedNumbers (String str, String delimiter) {
 		int calValue = 0;
-		String[] commaSeparatedNumbers = str.split(",");
-		for (String newStr : commaSeparatedNumbers) {
+		String[] delimiterSeparatedNumbers = str.split(delimiter);
+		for (String newStr : delimiterSeparatedNumbers) {
 			calValue = calValue + calculateNumber(newStr);
 		}		
 		return calValue;		
