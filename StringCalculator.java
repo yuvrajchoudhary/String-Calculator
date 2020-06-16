@@ -7,7 +7,9 @@ public class StringCalculator {
 		String[] newLinesSeparatedString = numbers.split("\n");
 
 		String delimiter = newLinesSeparatedString[0].substring(2);
-		
+		/**
+		 * Step 5 handling exception
+		 */
 		if (newLinesSeparatedString[1].contains("-")) {
 			String message = checkNegativeNumber(newLinesSeparatedString[1], delimiter);
 			throw new InvalidNumbers("negatives not allowed - "+ message);
