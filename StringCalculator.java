@@ -44,6 +44,8 @@ public class StringCalculator {
 	private int calculateNumber(String num) {
 		if (num.equalsIgnoreCase(""))
 			return 0;
+		else if (Integer.parseInt(num) > 1000)
+			return 0;
 		else
 			return Integer.parseInt(num);
 	}
