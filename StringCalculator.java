@@ -6,12 +6,18 @@ import java.util.List;
 
 public class StringCalculator {
 
-	int Add(String numbers) throws InvalidNumbers {
+	int Add(String numbers) throws InvalidNumbers, InvalidDelimiter{
 		String[] newLinesSeparatedString = numbers.split("\n");
 
 		String delimiter = "ABAB";
 		List<String> allDelimiter  = new  ArrayList<>();
 		allDelimiter = checkingDelimiter(newLinesSeparatedString[0]);
+		
+		for (String del : allDelimiter) {
+			if (del.length()> 1) {
+				throw new InvalidDelimiter("length longer than one char" + del);
+			}
+		}
 		
 		allDelimiter.forEach((del) -> {
 			newLinesSeparatedString[1] = newLinesSeparatedString[1].replace(del, delimiter);
@@ -70,6 +76,11 @@ public class StringCalculator {
 
 class InvalidNumbers extends Exception {
 	public InvalidNumbers( String message) {
+		super(message);		
+	}
+}
+class InvalidDelimiter extends Exception {
+	public InvalidDelimiter( String message) {
 		super(message);		
 	}
 }
