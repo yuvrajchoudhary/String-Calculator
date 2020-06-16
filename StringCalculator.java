@@ -1,14 +1,22 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StringCalculator {
 
 	int Add(String numbers) throws InvalidNumbers {
 		String[] newLinesSeparatedString = numbers.split("\n");
 
-		String delimiter = newLinesSeparatedString[0].substring(3,newLinesSeparatedString[0].length()-1);
-		newLinesSeparatedString[1] = newLinesSeparatedString[1].replace(delimiter, "ABAB");
-		delimiter = "ABAB"; // replacing with a common delimiter
+		String delimiter = "ABAB";
+		List<String> allDelimiter  = new  ArrayList<>();
+		allDelimiter = checkingDelimiter(newLinesSeparatedString[0]);
+		
+		allDelimiter.forEach((del) -> {
+			newLinesSeparatedString[1] = newLinesSeparatedString[1].replace(del, delimiter);
+		});
+		
 		
 		if (newLinesSeparatedString[1].contains("-")) {
 			String message = checkNegativeNumber(newLinesSeparatedString[1], delimiter);
@@ -17,6 +25,14 @@ public class StringCalculator {
 
 		return calulatedelimiterSeparatedNumbers(newLinesSeparatedString[1] , delimiter);
 
+	}
+
+	private List<String> checkingDelimiter(String string) {
+		List<String> list = new ArrayList<>();
+		string = string.substring(3, string.length() -1);
+		string = string.replace("][", "CCC");
+		list = new ArrayList<String>(Arrays.asList(string.split("CCC")));		
+		return list;
 	}
 
 	private String checkNegativeNumber(String string, String delimiter) {
