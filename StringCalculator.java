@@ -6,10 +6,10 @@ public class StringCalculator {
 	int Add(String numbers) throws InvalidNumbers {
 		String[] newLinesSeparatedString = numbers.split("\n");
 
-		String delimiter = newLinesSeparatedString[0].substring(2);
-		/**
-		 * Step 5 handling exception
-		 */
+		String delimiter = newLinesSeparatedString[0].substring(3,newLinesSeparatedString[0].length()-1);
+		newLinesSeparatedString[1] = newLinesSeparatedString[1].replace(delimiter, "ABAB");
+		delimiter = "ABAB"; // replacing with a common delimiter
+		
 		if (newLinesSeparatedString[1].contains("-")) {
 			String message = checkNegativeNumber(newLinesSeparatedString[1], delimiter);
 			throw new InvalidNumbers("negatives not allowed - "+ message);
